@@ -12,10 +12,10 @@ class Profile extends React.Component {
  }
 
  async componentDidMount() {
-        let response = await axios.get(`http://localhost:3001/users/profilepic/${this.props.id}` )
-        this.setState({
-          imgUrl: response.data.body[0].img_url
-        })
+    let response = await axios.get(`http://localhost:3001/users/profilepic/${this.props.id}` )
+    this.setState({
+      imgUrl: response.data.body[0].img_url
+    })
  }
 
  handleFileInput = (event) => {
@@ -47,7 +47,7 @@ class Profile extends React.Component {
 
  render(){
     const {email, id } = this.props
-  
+
         return (
             <div className="App">
                 <h1>Profile</h1>
@@ -57,7 +57,8 @@ class Profile extends React.Component {
                   <input type="file" onChange={this.handleFileInput} />
                   <input type="submit" value="Change Pic" />
                 </form>
-                <Link to = {`/feed/${this.props.id}` }>Feed</Link>
+                <br></br>
+                <Link to = {`/feed/${this.props.id}` }>Back to Feed</Link>
             </div>
           );
 
