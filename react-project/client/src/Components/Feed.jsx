@@ -7,12 +7,13 @@ import Modal from 'react-modal';
 // import '../App.css';
 
 class Feed extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             hashtag: "",
             urls: [],
-            showModal: false
+            showModal: false,
+            id: props.id
         }
         this.ref = React.createRef();
         this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -71,10 +72,10 @@ class Feed extends Component {
     //  }
 
     render() {
-        const { urls, hashtag } = this.state;
+        const { id, urls, hashtag } = this.state;
         return (
             <div className="feed">
-                <BurgerMenu />
+                <BurgerMenu id={id}/>
                 <div className="header">
                     <h1> BUNKR </h1>
                 </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios'
 import Profile from './Components/Profile'
 import Feed from './Components/Feed'
+import LogOut from './Components/Logout'
 import './App.css';
 import { BrowserRouter, Link, Redirect, Route, Switch } from 'react-router-dom'
 class App extends React.Component {
@@ -27,22 +28,6 @@ class App extends React.Component {
   //   this.setState({
   //     email: userInfo
   //   })
-  // }
-
-
-  handleResetAfterNotBeingRedirected = () => {
-    this.setState({
-      email: "",
-      exist:false,
-      id: null,
-      redirected: false,
-    })
-
-  }
-
-
-
-
   // }
   handleSubmit = (event) => {
     event.preventDefault()
@@ -119,6 +104,7 @@ class App extends React.Component {
             <nav>
               <Link to={`"/profile/${id}`}></Link>{" "}
               <Link to={`"/feed/${id}`}></Link>{" "}
+              <Link to={'/logout/'}></Link>{" "}
             </nav>
             <Switch>
               <Route path="/feed/:id" render={
@@ -135,6 +121,7 @@ class App extends React.Component {
                   )
                 }
               } />
+              <Route path="/logout" component={LogOut}/>
             </Switch>
             <Redirect to={`/feed/${id}`} ç />
           </div>
@@ -182,6 +169,7 @@ class App extends React.Component {
             <nav>
               <Link to={`"/profile/${id}`}></Link>{" "}
               <Link to={`"/feed/${id}`}></Link>{" "}
+              <Link to={'/logout/'}></Link>{" "}
             </nav>
             <Switch>
               <Route path="/profile/:id" render={
@@ -198,6 +186,7 @@ class App extends React.Component {
                   )
                 }
               } />
+              <Route path="/logout/" component={LogOut}/>
             </Switch>
             <Redirect to={`/profile/${id}`} />
           </div>
