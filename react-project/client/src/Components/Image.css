@@ -1,0 +1,23 @@
+.image{
+    text-align: center;
+    display:grid;
+    /* border: 5px solid red; */
+    margin:0px;
+   
+    
+} 
+.input-tag__tags{
+    list-style-type: none;
+    
+} 
+
+.listOfTags{
+    display: inline;
+    margin: 2px;
+}
+
+.imagePrev{
+    height:200px;
+    display: flex;
+    justify-self: center;
+}

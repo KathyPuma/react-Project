@@ -1,0 +1,14 @@
+#outer-container {
+    height: 100%;
+    width: 100%;
+    margin-top: 5px;
+}
+.bm-overlay {
+    color: E4C975;
+} 
+.bm-item-list a:visited {
+    color: paleturquoise;
+}
+.bm-item-list a:link {
+    color: pink;
+}
