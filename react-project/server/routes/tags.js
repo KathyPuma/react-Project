@@ -48,7 +48,7 @@ router.post('/tag/:tag', async (req,  res) => {
     try {
         let insertQuery = `INSERT INTO tags(tag_name)
         VALUES ($1)`
-        db.none(insertQuery, tagName)
+        await db.none(insertQuery, tagName)
         res.json({
             success: true,
             message: "tags updated"

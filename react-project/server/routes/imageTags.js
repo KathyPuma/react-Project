@@ -21,7 +21,7 @@ router.post('/addTagToImage/', async (req,  res) => {
     try {  
         let insertQuery = `INSERT INTO image_tags(tag_id, img_id)
         VALUES ($1, $2);`
-        db.none(insertQuery, [req.body.tag_id, req.body.img_id])
+       await  db.none(insertQuery, [req.body.tag_id, req.body.img_id])
         res.json({
             success: true,
             body:req.body,
