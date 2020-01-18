@@ -17,18 +17,6 @@ class App extends React.Component {
       defaultPhoto: "http://pronksiapartments.ee/wp-content/uploads/2015/10/placeholder-face-big.png",
     }
   }
-
-  // componentDidMount = async() => {
-  //   const checkIfUserIsLoggedIn = await axios.get(`http://localhost:3001/users/logged-in`)
-  //   let loggedInEmail= checkIfUserIsLoggedIn.data.body
-  //   // console.log(loggedInEmail)
-  //   // console.log(loggedInEmail[0])
-  //   let userInfo = `http://localhost:3001/users/email/${loggedInEmail}`
-  //   console.log(userInfo)
-  //   this.setState({
-  //     email: userInfo
-  //   })
-  // }
   handleSubmit = (event) => {
     event.preventDefault()
   }
@@ -36,8 +24,6 @@ class App extends React.Component {
     this.setState({
       email: event.target.value
     })
-    // const allImages = await axios.get("http://localhost:3001/images/all")
-    // console.log("all Images" , allImages)
   }
   handleLogin = async () => {
     const { email, exist, id, button } = this.state
@@ -211,4 +197,4 @@ class App extends React.Component {
     }
   }
 }
-export default App
+export default App;

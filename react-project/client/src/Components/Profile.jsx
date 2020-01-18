@@ -50,7 +50,7 @@ class Profile extends React.Component {
 
         return (
             <div className="App">
-                <h1>Profile</h1>
+                <h1>BunkR</h1>
                 <img className="profilePic" src={this.state.imgUrl} alt=''></img>
                 <p>Welcome {email}!</p>
                 <form onSubmit={this.handleSubmit}>
