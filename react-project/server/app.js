@@ -20,13 +20,16 @@ const upload = multer ({
 })
 // .array('file')
 
-
+const multiUpload = multer ({
+  storage: storage
+}).array('file')
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const tagsRouter = require('./routes/tags')
 const imagesRouter = require('./routes/images')
 const imageTagsRouter = require('./routes/imageTags')
+//const multiRouter = require('.routes/multi')
 
 var app = express();
 app.use(cors());
@@ -41,7 +44,7 @@ app.use('/users', usersRouter);
 app.use('/tags', tagsRouter);
 app.use('/images', imagesRouter)
 app.use('/imageTags', imageTagsRouter)
-
+app.use('/multi', imagesRouter)
 app.post('/upload', upload.single ("image"), (req,res,next) => {
 
     
