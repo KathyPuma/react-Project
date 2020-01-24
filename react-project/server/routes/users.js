@@ -3,7 +3,8 @@ var router = express.Router();
 const db = require('./pgExport');
 
 
-const getAllUsers = async (req, res, next) => {
+
+router.get("/getAllUsers/", async (req, res, next) => {
   try {
     let response = await db.any("SELECT * FROM users;");
     res.json({
@@ -16,9 +17,10 @@ const getAllUsers = async (req, res, next) => {
       message: "Error: something went wrong"
     })
   }
-}
+})
 
-const getloggedInUser = async (req, res, next) => {
+
+router.get("/logged-in/", async (req, res) => {
   try {
 
     let response = await db.one("SELECT email FROM users WHERE loggedIn= true ;", req.body.loggedIn);
@@ -29,12 +31,13 @@ const getloggedInUser = async (req, res, next) => {
   } catch (error) {
     res.status(500).json({
       status: "fail",
-      message: "error:", error
+      message: "Error: something went wrong"
     })
   }
-}
+})
 
-const logInUser = async (req, res, next) => {
+
+router.post("/log-in/:email",  async (req, res) => {
   let email = req.params.email
   try {
     let response = await db.any("UPDATE users SET loggedIn = true WHERE email = $1", email)
@@ -46,12 +49,13 @@ const logInUser = async (req, res, next) => {
     console.log(error)
     res.status(500).json({
       status: "fail",
-      message: "error:", error
+      message: "Error: something went wrong"
     })
   }
-}
+})
 
-const logOutUser = async (req, res, next) => {
+
+router.post("/log-out", async (req, res) => {
   try {
     let response = await db.any("UPDATE users SET loggedIn = false WHERE loggedIn = true")
     res.json({
@@ -64,11 +68,11 @@ const logOutUser = async (req, res, next) => {
       message: "Error: something went wrong"
     })
   }
-}
+})
 
 
 
-const addNewUser = async(req,res) =>{
+router.post("/sign-up/",  async(req,res) =>{
   try {
     let insertQuery = `
   INSERT INTO users(email, img_url, loggedIn)
@@ -84,9 +88,11 @@ const addNewUser = async(req,res) =>{
       message: `There was an error!`
     })
   }
-}
+})
 
-const getUserEmail = async(req,res) =>{
+
+
+router.get("/email/:email", async(req,res) =>{
   let email = req.params.email
   try{
     let response = await db.one('SELECT *  FROM users WHERE email = $1', email)
@@ -100,10 +106,11 @@ const getUserEmail = async(req,res) =>{
       message: "Error: something went wrong"
     })
   }
-}
+})
 
 
-const getProfilePic = async(req,res) => {
+
+router.get("/profilepic/:id", async(req,res) => {
   let id = req.params.id
   try {
     let response = await db.any(`SELECT img_url FROM users WHERE id = $1`, id)
@@ -117,9 +124,10 @@ const getProfilePic = async(req,res) => {
       message: "Error: something went wrong"
     })
   }
-}
+})
 
-const changeProfilePic = async(req,res) => {
+
+router.put("/profilepic/:id",  async(req,res) => {
   let id = req.params.id
   try {
     await db.none('UPDATE users SET img_url = $1 WHERE id = $2', [req.body.imgUrl, id])
@@ -132,15 +140,8 @@ const changeProfilePic = async(req,res) => {
       message:'There was an error!'
     })
   }
-}
+})
 
-router.get("/getAllUsers/", getAllUsers);
-router.post("/sign-up/", addNewUser)
-router.get("/logged-in/", getloggedInUser)
-router.put("/log-in/:email", logInUser)
-router.put("/log-out", logOutUser)
-router.get("/email/:email", getUserEmail)
-router.get("/profilepic/:id", getProfilePic)
-router.put("/profilepic/:id", changeProfilePic)
+
 
 module.exports = router;
